@@ -56,17 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Изменить заказ', ['update', 'order_date' => $model->order_date], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить заказ', ['delete', 'order_date' => $model->order_date], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы хотите удалить заказ '.$model->order_id .'?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

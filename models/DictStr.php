@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use yii\db\Query;
+use yii\helpers\ArrayHelper;
 
 use Yii;
 
@@ -14,7 +16,7 @@ use Yii;
  *
  * @property EmpStrLnk[] $empStrLnks
  * @property DictEmployee[] $emps
- * @property FactOrders[] $factOrders
+ * @property Orders[] $factOrders
  * @property FactStrRests[] $factStrRests
  * @property StrWhsLnk[] $strWhsLnks
  * @property DictWhs[] $whs
@@ -114,5 +116,14 @@ class DictStr extends \yii\db\ActiveRecord
     public function getWhs()
     {
         return $this->hasMany(DictWhs::class, ['whs_id' => 'whs_id'])->viaTable('str_whs_lnk', ['str_id' => 'str_id']);
+    }
+
+    public static function getStr()
+    {
+        $query = (new Query())
+            ->select(['str_id', 'address'])
+            ->from(['dict_str']);
+        return ArrayHelper::map($query->all(), 'str_id', 'address');
+
     }
 }

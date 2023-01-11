@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "dict_employee".
@@ -82,5 +84,14 @@ class DictEmployee extends \yii\db\ActiveRecord
     public function getStrs()
     {
         return $this->hasMany(DictStr::class, ['str_id' => 'str_id'])->viaTable('emp_str_lnk', ['emp_id' => 'emp_id']);
+    }
+
+    public static function getEmp()
+    {
+        $query = (new Query())
+            ->select(['emp_id', 'login'])
+            ->from(['dict_employee']);
+        return ArrayHelper::map($query->all(), 'emp_id', 'login');
+
     }
 }

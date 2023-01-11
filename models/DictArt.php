@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "dict_art".
@@ -56,9 +58,9 @@ class DictArt extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFactOrders()
+    public function getOrders()
     {
-        return $this->hasMany(FactOrders::class, ['art_id' => 'art_id']);
+        return $this->hasMany(Orders::class, ['art_id' => 'art_id']);
     }
 
     /**
@@ -69,5 +71,14 @@ class DictArt extends \yii\db\ActiveRecord
     public function getFactStrRests()
     {
         return $this->hasMany(FactStrRests::class, ['art_id' => 'art_id']);
+    }
+
+    public static function getArt()
+    {
+        $query = (new Query())
+            ->select(['art_id', 'volume'])
+            ->from(['dict_art']);
+        return ArrayHelper::map($query->all(), 'art_id', 'volume');
+
     }
 }

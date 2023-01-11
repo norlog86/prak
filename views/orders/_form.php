@@ -12,17 +12,48 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'order_id')->textInput() ?>
+    <?= $form->field($model, 'str_id')->widget(\kartik\select2\Select2::classname(), [
+        'data' => \app\models\DictStr::getStr(),
+        'language' => 'ru',
+        'options' => [
+            'placeholder' => 'Выберите',
+            'onchange' => 'stadart_changed(this)',
+        ],
+        'pluginOptions' => [],
+    ]); ?>
 
-    <?= $form->field($model, 'str_id')->textInput() ?>
+    <?= $form->field($model, 'emp_id')->widget(\kartik\select2\Select2::classname(), [
+        'data' => \app\models\DictEmployee::getEmp(),
+        'language' => 'ru',
+        'options' => [
+            'placeholder' => 'Выберите',
+            'onchange' => 'stadart_changed(this)',
+        ],
+        'pluginOptions' => [],
+    ]); ?>
 
-    <?= $form->field($model, 'emp_id')->textInput() ?>
+    <?= $form->field($model, 'art_id')->widget(\kartik\select2\Select2::classname(), [
+        'data' => \app\models\DictArt::getArt(),
+        'language' => 'ru',
+        'options' => [
+            'placeholder' => 'Выберите',
+            'onchange' => 'stadart_changed(this)',
+        ],
+        'pluginOptions' => [],
+    ]); ?>
 
-    <?= $form->field($model, 'art_id')->textInput() ?>
-
-    <?= $form->field($model, 'order_date')->textInput() ?>
+    <?= $form->field($model, 'order_date')->widget(\kartik\date\DatePicker::classname(), [
+        'value' => date('d-M-Y', strtotime('+2 days')),
+        'options' => ['placeholder' => 'Выберите дату',
+        ],
+        'pluginOptions' => [
+            'format' => 'dd-M-yyyy',
+            'todayHighlight' => true,
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'amount')->textInput() ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
