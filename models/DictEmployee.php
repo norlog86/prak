@@ -15,6 +15,7 @@ use Yii;
  * @property EmpStrLnk[] $empStrLnks
  * @property FactOrders[] $factOrders
  * @property DictStr[] $strs
+ * @property string $token [varchar(100)]
  */
 class DictEmployee extends \yii\db\ActiveRecord
 {
