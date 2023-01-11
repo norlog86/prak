@@ -36,14 +36,15 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'brandUrl' => Yii::$app->homeUrl,
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Машины', 'url' => ['/orders/index']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Войти', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
+    if (!Yii::$app->user->isGuest){
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [
+                ['label' => 'Главная', 'url' => ['/site/index']],
+                ['label' => 'Заказы', 'url' => ['/orders/index']],
+                Yii::$app->user->isGuest
+                    ? ['label' => 'Войти', 'url' => ['/site/login']]
+                    : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
                         'Выйти (' . Yii::$app->user->identity->username . ')',
@@ -51,8 +52,27 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     )
                     . Html::endForm()
                     . '</li>'
-        ]
-    ]);
+            ]
+        ]);
+    }else{
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [
+                ['label' => 'Главная', 'url' => ['/site/index']],
+                Yii::$app->user->isGuest
+                    ? ['label' => 'Войти', 'url' => ['/site/login']]
+                    : '<li class="nav-item">'
+                    . Html::beginForm(['/site/logout'])
+                    . Html::submitButton(
+                        'Выйти (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'nav-link btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+            ]
+        ]);
+    }
+
     NavBar::end();
     ?>
 </header>

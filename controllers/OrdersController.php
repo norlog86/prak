@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\DictWhs;
 use app\models\Orders;
 use app\models\OrdersSearch;
+use app\models\StrWhsLnk;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,8 +57,18 @@ class OrdersController extends Controller
      */
     public function actionView($order_date)
     {
+        $order = $this->findModel($order_date);
+        $swl = StrWhsLnk::findOne(['str_id'=>$order->str_id]);
+
+        $whs = DictWhs::findOne(['whs_id' => $swl->whs_id]);
+        $whs_lat= $whs->latitude;
+        $whs_long = $whs->longitude;
+        $whs_ad = $whs->address;
         return $this->render('view', [
             'model' => $this->findModel($order_date),
+            'whs_lat' => $whs_lat,
+            'whs_long' => $whs_long,
+            'whs_ad' => $whs_ad,
         ]);
     }
 
@@ -92,6 +104,7 @@ class OrdersController extends Controller
     public function actionUpdate($order_date)
     {
         $model = $this->findModel($order_date);
+
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'order_date' => $model->order_date]);

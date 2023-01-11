@@ -48,9 +48,9 @@ class DictWhs extends \yii\db\ActiveRecord
     {
         return [
             'whs_id' => 'Whs ID',
-            'address' => 'Address',
-            'latitude' => 'Latitude',
-            'longitude' => 'Longitude',
+            'address' => 'Адресс',
+            'latitude' => 'Широта',
+            'longitude' => 'Долгота',
         ];
     }
 

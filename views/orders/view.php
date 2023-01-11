@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\Orders $model */
 
-$this->title = $model->order_date;
-$this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
+$this->title = $model->order_id;
+$this->params['breadcrumbs'][] = ['label' => 'Заказы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
         var multiRoute = new ymaps.multiRouter.MultiRoute({
             // Описание опорных точек мультимаршрута.
             referencePoints: [
-                [45.089668, 38.991060],
-                "Ростовское шоссе, 24/1"
+                [<?= $whs_lat ?>, <?= $whs_long ?>],
+                [<?= $model->str->latitude?>, <?= $model->str->longitude?>]
             ],
         }, {
             // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
@@ -41,10 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
         });
         // Создаем карту с добавленными на нее кнопками.
         var myMap = new ymaps.Map('map', {
-            center: [45.089668, 38.991060],
+            center: [<?= $whs_lat ?>, <?= $whs_long ?>],
             zoom: 7
-        }, {
-            buttonMaxWidth: 300
         });
 
         // Добавляем мультимаршрут на карту.
@@ -59,11 +57,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'order_date' => $model->order_date], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'order_date' => $model->order_date], [
+        <?= Html::a('Изменить заказ', ['update', 'order_date' => $model->order_date], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить заказ', ['delete', 'order_date' => $model->order_date], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы хотите удалить заказ '.$model->order_id .'?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -72,7 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'order_id',
             'emp.login',
             'emp.security_lvl',
             'art.volume',
@@ -82,8 +79,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'amount',
         ],
     ]) ?>
-    <body>
-    <div id="map" style="width:400px; height:300px"></div>
-    </body>
+    <div style="padding-left:30%; padding-right: 30%">
+        <p>Заказ из <?= $whs_ad?> на <?= $model->str->address?></p>
+        <div  id="map" style="width:400px; height:300px;"></div>
+    </div>
 
 </div>

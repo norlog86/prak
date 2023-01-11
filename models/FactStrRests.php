@@ -48,8 +48,8 @@ class FactStrRests extends \yii\db\ActiveRecord
         return [
             'str_id' => 'Str ID',
             'art_id' => 'Art ID',
-            'rests_date' => 'Rests Date',
-            'rests' => 'Rests',
+            'rests_date' => 'Дата',
+            'rests' => 'Остаток',
         ];
     }
 

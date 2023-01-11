@@ -20,6 +20,8 @@ use Yii;
  */
 class Orders extends \yii\db\ActiveRecord
 {
+    public $whs_lat;
+    public $whs_long;
     /**
      * {@inheritdoc}
      */
@@ -43,6 +45,7 @@ class Orders extends \yii\db\ActiveRecord
             [['art_id'], 'exist', 'skipOnError' => true, 'targetClass' => DictArt::class, 'targetAttribute' => ['art_id' => 'art_id']],
             [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => DictEmployee::class, 'targetAttribute' => ['emp_id' => 'emp_id']],
             [['str_id'], 'exist', 'skipOnError' => true, 'targetClass' => DictStr::class, 'targetAttribute' => ['str_id' => 'str_id']],
+            [['str_id'], 'exist', 'skipOnError' => true, 'targetClass' => StrWhsLnk::class, 'targetAttribute' => ['str_id' => 'str_id']],
         ];
     }
 
@@ -56,8 +59,8 @@ class Orders extends \yii\db\ActiveRecord
             'str_id' => 'Str ID',
             'emp_id' => 'Emp ID',
             'art_id' => 'Art ID',
-            'order_date' => 'Order Date',
-            'amount' => 'Amount',
+            'order_date' => 'Дата Заказа',
+            'amount' => 'Количество',
         ];
     }
 

@@ -47,7 +47,7 @@ class FactTickets extends \yii\db\ActiveRecord
             'order_id' => 'Order ID',
             'ticket_id' => 'Ticket ID',
             'drv_id' => 'Drv ID',
-            'status' => 'Status',
+            'status' => 'Статус заказа',
         ];
     }
 

@@ -50,9 +50,9 @@ class DictStr extends \yii\db\ActiveRecord
     {
         return [
             'str_id' => 'Str ID',
-            'address' => 'Address',
-            'latitude' => 'Latitude',
-            'longitude' => 'Longitude',
+            'address' => 'Адрес доставки',
+            'latitude' => 'Широта',
+            'longitude' => 'Долгота',
         ];
     }
 

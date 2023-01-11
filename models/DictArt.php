@@ -45,9 +45,9 @@ class DictArt extends \yii\db\ActiveRecord
     {
         return [
             'art_id' => 'Art ID',
-            'volume' => 'Volume',
-            'stack_volume' => 'Stack Volume',
-            'cnt_in_stack' => 'Cnt In Stack',
+            'volume' => 'Объем',
+            'stack_volume' => 'Объем упаковки',
+            'cnt_in_stack' => 'Количество в упаковке',
         ];
     }
 

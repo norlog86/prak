@@ -13,7 +13,7 @@ use Yii;
  * @property string $password
  *
  * @property EmpStrLnk[] $empStrLnks
- * @property FactOrders[] $factOrders
+ * @property Orders[] $Orders
  * @property DictStr[] $strs
  * @property string $token [varchar(100)]
  */
@@ -48,9 +48,9 @@ class DictEmployee extends \yii\db\ActiveRecord
     {
         return [
             'emp_id' => 'Emp ID',
-            'security_lvl' => 'Security Lvl',
-            'login' => 'Login',
-            'password' => 'Password',
+            'security_lvl' => 'Должность',
+            'login' => 'ФИО',
+            'password' => 'Пароль',
         ];
     }
 
@@ -69,9 +69,9 @@ class DictEmployee extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFactOrders()
+    public function getOrders()
     {
-        return $this->hasMany(FactOrders::class, ['emp_id' => 'emp_id']);
+        return $this->hasMany(Orders::class, ['emp_id' => 'emp_id']);
     }
 
     /**

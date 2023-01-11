@@ -46,8 +46,8 @@ class DictDrv extends \yii\db\ActiveRecord
     {
         return [
             'drv_id' => 'Drv ID',
-            'drv_name' => 'Drv Name',
-            'drv_schedule' => 'Drv Schedule',
+            'drv_name' => 'ФИО водителя',
+            'drv_schedule' => 'Расписание',
         ];
     }
 
