@@ -42,6 +42,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'items' => [
                 ['label' => 'Главная', 'url' => ['/site/index']],
                 ['label' => 'Заказы', 'url' => ['/orders/index']],
+                ['label' => 'Фактический остаток', 'url' => ['/rests/index']],
                 Yii::$app->user->isGuest
                     ? ['label' => 'Войти', 'url' => ['/site/login']]
                     : '<li class="nav-item">'
