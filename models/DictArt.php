@@ -34,7 +34,7 @@ class DictArt extends \yii\db\ActiveRecord
     {
         return [
             [['art_id'], 'required'],
-            [['art_id'], 'string'],
+            [['art_id', 'art_nm'], 'string'],
             [['volume', 'stack_volume', 'cnt_in_stack'], 'number'],
             [['art_id'], 'unique'],
         ];
@@ -47,6 +47,7 @@ class DictArt extends \yii\db\ActiveRecord
     {
         return [
             'art_id' => 'Art ID',
+            'art_nm' => 'Товар',
             'volume' => 'Объем',
             'stack_volume' => 'Объем упаковки',
             'cnt_in_stack' => 'Количество в упаковке',

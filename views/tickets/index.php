@@ -1,24 +1,24 @@
 <?php
 
-use app\models\Rests;
+use app\models\Tickets;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\RestsSearch $searchModel */
+/** @var app\models\TicketsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Фактический остаток товара в магазине';
+$this->title = 'Запланированные поездки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="rests-index">
+<div class="tickets-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Запланировать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,18 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => false,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'str.address',
-            'art.art_nm',
-            'rests_date',
-            'rests',
+            'order_id',
+            'ticket_id',
+            'drv.drv_name',
+            'status',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Rests $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'rests_date' => $model->rests_date]);
+                'urlCreator' => function ($action, Tickets $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'ticket_id' => $model->ticket_id]);
                  }
             ],
         ],
