@@ -60,6 +60,13 @@ class TicketsController extends Controller
         ]);
     }
 
+    public function actionTickets()
+    {
+        $or = new Tickets();
+        $or->getCreatTicket();
+        return $this->redirect('index');
+    }
+
     /**
      * Creates a new Tickets model.
      * If creation is successful, the browser will be redirected to the 'view' page.

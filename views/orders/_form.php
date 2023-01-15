@@ -40,14 +40,15 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'order_date')->widget(\kartik\date\DatePicker::classname(), [
-        'language' => 'ru',
+        'value' => date('dd-mm-yyyy', strtotime('+2 days')),
         'options' => ['placeholder' => 'Выберите дату',
         ],
         'pluginOptions' => [
             'autoclose' => true,
-            'format' => 'dd-M-yyyy',
+            'format' => 'dd-mm-yyyy',
             'todayHighlight' => true,
         ],
+        'language' => 'ru',
     ]); ?>
 
     <?= $form->field($model, 'amount')->textInput() ?>

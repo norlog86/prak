@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "fact_orders".
@@ -22,6 +23,7 @@ class Orders extends \yii\db\ActiveRecord
 {
     public $whs_lat;
     public $whs_long;
+
     /**
      * {@inheritdoc}
      */
@@ -42,10 +44,34 @@ class Orders extends \yii\db\ActiveRecord
             [['amount'], 'number'],
             [['str_id', 'emp_id', 'order_date'], 'unique', 'targetAttribute' => ['str_id', 'emp_id', 'order_date']],
             [['order_date'], 'unique'],
-            [['art_id'], 'exist', 'skipOnError' => true, 'targetClass' => DictArt::class, 'targetAttribute' => ['art_id' => 'art_id']],
-            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => DictEmployee::class, 'targetAttribute' => ['emp_id' => 'emp_id']],
-            [['str_id'], 'exist', 'skipOnError' => true, 'targetClass' => DictStr::class, 'targetAttribute' => ['str_id' => 'str_id']],
-            [['str_id'], 'exist', 'skipOnError' => true, 'targetClass' => StrWhsLnk::class, 'targetAttribute' => ['str_id' => 'str_id']],
+            [
+                ['art_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => DictArt::class,
+                'targetAttribute' => ['art_id' => 'art_id'],
+            ],
+            [
+                ['emp_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => DictEmployee::class,
+                'targetAttribute' => ['emp_id' => 'emp_id'],
+            ],
+            [
+                ['str_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => DictStr::class,
+                'targetAttribute' => ['str_id' => 'str_id'],
+            ],
+            [
+                ['str_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => StrWhsLnk::class,
+                'targetAttribute' => ['str_id' => 'str_id'],
+            ],
         ];
     }
 
@@ -89,4 +115,5 @@ class Orders extends \yii\db\ActiveRecord
     {
         return $this->hasOne(DictStr::class, ['str_id' => 'str_id']);
     }
+
 }

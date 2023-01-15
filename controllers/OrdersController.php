@@ -59,10 +59,10 @@ class OrdersController extends Controller
     public function actionView($order_date)
     {
         $order = $this->findModel($order_date);
-        $swl = StrWhsLnk::findOne(['str_id'=>$order->str_id]);
+        $swl = StrWhsLnk::findOne(['str_id' => $order->str_id]);
 
         $whs = DictWhs::findOne(['whs_id' => $swl->whs_id]);
-        $whs_lat= $whs->latitude;
+        $whs_lat = $whs->latitude;
         $whs_long = $whs->longitude;
         $whs_ad = $whs->address;
         return $this->render('view', [
