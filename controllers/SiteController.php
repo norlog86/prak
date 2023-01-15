@@ -70,10 +70,7 @@ class SiteController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         } else {
-            return $this->render('/orders/index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
+            return $this->redirect('/orders/index');
 
         }
     }
