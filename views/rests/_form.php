@@ -17,7 +17,6 @@ use yii\widgets\ActiveForm;
         'language' => 'ru',
         'options' => [
             'placeholder' => 'Выберите',
-            'onchange' => 'stadart_changed(this)',
         ],
         'pluginOptions' => [],
     ]); ?>
@@ -27,15 +26,15 @@ use yii\widgets\ActiveForm;
         'language' => 'ru',
         'options' => [
             'placeholder' => 'Выберите',
-            'onchange' => 'stadart_changed(this)',
         ],
         'pluginOptions' => [],
     ]); ?>
     <?= $form->field($model, 'rests_date')->widget(\kartik\date\DatePicker::classname(), [
-        'value' => date('d-M-Y', strtotime('+2 days')),
+        'language' => 'ru',
         'options' => ['placeholder' => 'Выберите дату',
         ],
         'pluginOptions' => [
+            'autoclose' => true,
             'format' => 'dd-M-yyyy',
             'todayHighlight' => true,
         ],

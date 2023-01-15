@@ -64,10 +64,18 @@ class SiteController extends Controller
         $searchModel = new OrdersSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else {
+            return $this->render('/orders/index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+
+        }
     }
 
     /**

@@ -10,7 +10,7 @@ use Yii;
  * @property string $order_id
  * @property string $str_id
  * @property string $emp_id
- * @property string $art_id
+ * @property string s$art_id
  * @property string $order_date
  * @property float|null $amount
  *
@@ -50,7 +50,6 @@ class Orders extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -65,7 +64,6 @@ class Orders extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Art]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -75,7 +73,6 @@ class Orders extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Emp]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -85,7 +82,6 @@ class Orders extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Str]].
      *
      * @return \yii\db\ActiveQuery
      */

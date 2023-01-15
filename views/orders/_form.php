@@ -12,41 +12,39 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'str_id')->widget(\kartik\select2\Select2::classname(), [
+    <?= $form->field($model, 'str_id')->label('Склад доставки')->widget(\kartik\select2\Select2::classname(), [
         'data' => \app\models\DictStr::getStr(),
         'language' => 'ru',
         'options' => [
             'placeholder' => 'Выберите',
-            'onchange' => 'stadart_changed(this)',
         ],
         'pluginOptions' => [],
     ]); ?>
 
-    <?= $form->field($model, 'emp_id')->widget(\kartik\select2\Select2::classname(), [
+    <?= $form->field($model, 'emp_id')->label('Выбрать сотрудника')->widget(\kartik\select2\Select2::classname(), [
         'data' => \app\models\DictEmployee::getEmp(),
         'language' => 'ru',
         'options' => [
             'placeholder' => 'Выберите',
-            'onchange' => 'stadart_changed(this)',
         ],
         'pluginOptions' => [],
     ]); ?>
 
-    <?= $form->field($model, 'art_id')->widget(\kartik\select2\Select2::classname(), [
+    <?= $form->field($model, 'art_id')->label('Выбрать товар')->widget(\kartik\select2\Select2::classname(), [
         'data' => \app\models\DictArt::getArt(),
         'language' => 'ru',
         'options' => [
             'placeholder' => 'Выберите',
-            'onchange' => 'stadart_changed(this)',
         ],
         'pluginOptions' => [],
     ]); ?>
 
     <?= $form->field($model, 'order_date')->widget(\kartik\date\DatePicker::classname(), [
-        'value' => date('d-M-Y', strtotime('+2 days')),
+        'language' => 'ru',
         'options' => ['placeholder' => 'Выберите дату',
         ],
         'pluginOptions' => [
+            'autoclose' => true,
             'format' => 'dd-M-yyyy',
             'todayHighlight' => true,
         ],

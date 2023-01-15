@@ -77,9 +77,9 @@ class DictArt extends \yii\db\ActiveRecord
     public static function getArt()
     {
         $query = (new Query())
-            ->select(['art_id', 'volume'])
+            ->select(['art_id', 'art_nm'])
             ->from(['dict_art']);
-        return ArrayHelper::map($query->all(), 'art_id', 'volume');
+        return ArrayHelper::map($query->all(), 'art_id', 'art_nm');
 
     }
 }
